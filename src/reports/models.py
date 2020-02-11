@@ -13,8 +13,8 @@ from categories.models import Category
 #     ("3", "3"),
 #     ...
 # )
+hours = ([(str(x), str(x)) for x in range(1, 25)])
 
-hours = ([(str(x), str(x)) for x in range (1,25)])    
 
 class Report(models.Model):
     day = models.DateField(default=timezone.now)
@@ -24,12 +24,13 @@ class Report(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     plan = models.PositiveIntegerField()
     execution = models.PositiveIntegerField()
-    procution_line = models.ForeignKey(ProductionLine, on_delete=models.CASCADE)
+    production_line = models.ForeignKey(
+        ProductionLine, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return "{}-{}-{}".format(self.start_hour, self.end_hour, self.procution_line)
+        return "{}-{}-{}".format(self.start_hour, self.end_hour, self.production_line)
 
 
 class ProblemReported(models.Model):
@@ -48,4 +49,3 @@ class ProblemReported(models.Model):
     class Meta:
         verbose_name = 'Problem Report'
         verbose_name_plural = 'Problems Reports'
-    
