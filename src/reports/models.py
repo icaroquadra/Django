@@ -29,8 +29,14 @@ class Report(models.Model):
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
+    def get_day(self):
+        return self.day.strftime('%d/%m/%Y')
+
     def __str__(self):
         return "{}-{}-{}".format(self.start_hour, self.end_hour, self.production_line)
+
+    class Meta:
+        ordering = ('-created',)
 
 
 class ProblemReported(models.Model):
@@ -40,6 +46,7 @@ class ProblemReported(models.Model):
     breakdown = models.PositiveIntegerField()
     public = models.BooleanField(default=False)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    report = models.ForeignKey(Report, on_delete=models.CASCADE)
     updated = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
 
