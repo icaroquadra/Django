@@ -6,7 +6,7 @@ class ReportForm(forms.ModelForm):
 
     class Meta:
         model = Report
-        fields = '__all__'
+        exclude = ('user', 'production_line',)
 
 
 class ProblemReportedForm(forms.ModelForm):

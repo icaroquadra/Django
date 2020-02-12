@@ -18,12 +18,12 @@
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="modal-body">
-                        {{ problem_reported_form|crispy}}
-                        <input type="hidden" name="report_id" id="report_id">
+                    {{ problem_reported_form|crispy}}
+                    <input type="hidden" name="report_id" id="report_id">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" name="submit-report-problem-btn" class="btn btn-primary">Send</button>
                 </div>
             </form>
         </div>
@@ -34,8 +34,9 @@
     <div class="row">
         <div class="col-2">
             <form action="" method="POST">
-                {{ form|crispy }}
-                <button type="submit" class="btn btn-primary w-100 shadow-sm mt-3">
+                {% csrf_token %}
+                {{ production_report_form|crispy }}
+                <button type="submit" name="submit-production-report-btn" class="btn btn-primary w-100 shadow-sm mt-3">
                     <i class="fas fa-paper-plane"></i>Send
                 </button>
             </form>
