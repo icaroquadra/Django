@@ -1,4 +1,4 @@
-# Udemy-Django
+# Django
 Course to improve my knowledge
 
 Install:
